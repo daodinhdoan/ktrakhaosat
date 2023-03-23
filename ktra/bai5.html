@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./bai5.css">
+  </head>
+  <h2>Nhân viên Rikkei Academy</h2>
+  <label for="">Tên nhân viên</label>
+  <input type="text" id="nameNhanVien" />
+  <button onclick="addNV()">Thêm Nv</button>
+  <h3>Quản lí nhân viên</h3>
+  <table id="tableNhanVien"></table>
+  <body>
+    <script>
+      let listNhanVien = ["hoa", "hong", "hue"];
+      function addNV() {
+        let _nameNhanVien = document.getElementById("nameNhanVien").value;
+        listNhanVien.push(_nameNhanVien);
+        renderNv();
+      }
+      function renderNv() {
+        let result = `
+            <tr>
+              <td>Tên Nhân viên</td>
+            </tr>
+        `;
+        for (let i = 0; i < listNhanVien.length; i++) {
+          result += `
+            <tr>
+                <td>
+                    ${listNhanVien[i]}
+                </td>
+                <td><button onclick="editNvn(${i})">Edit</button></td>
+                <td><button onclick="deleteNvn(${i})">Delete</button></td>
+            </tr>
+            `;
+        }
+        document.getElementById("tableNhanVien").innerHTML = result;
+      }
+      renderNhanVien();
+      function deleteNvn(i) {
+        listNhanVien.splice(i, 1);
+        renderNv();
+      }
+      function editNvn(i) {
+        let valueNv = prompt(`đổi nhân viên`);
+        listNhanVien.splice(i, 1, valueNv);
+        renderNv();
+      }
+    </script>
+  </body>
+</html>
